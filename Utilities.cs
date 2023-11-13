@@ -1,13 +1,41 @@
 ﻿
 using Newtonsoft.Json;
+using SpartaDungeon;
 
 namespace Framework
 {
+    #region Public Enums
+    public enum E_TITLE_MENU
+    {
+        GAME_START,
+        GAME_CREDIT,
+        GAME_EXIT
+    }
+
+    public enum ResourceKeys
+    {
+        TitleText,
+        Player,
+        Inventory,
+        ItemList
+    }
+    #endregion
+
     #region Public Structure
     public struct COORD
     {
         int X { get; set; }
         int Y { get; set; }
+    }
+    #endregion
+
+    #region Public Static Class
+    public static class ResourcePaths
+    {
+        public const string TITLE_TXT_PATH = "TitleText.txt";
+        public const string PLAYER_JSON_PATH = "Player.json";
+        public const string INVENTORY_JSON_PATH = "Inventory.json";
+        public const string ITEMLIST_JSON_PATH = "ItemList.json";
     }
     #endregion
 
@@ -39,15 +67,15 @@ namespace Framework
         }
 
         // Generic Json 직렬화된 데이터 역직렬화
-        public static T? LoadFromJson<T>(string filePath)
-        {
-            filePath = Path.Combine(GetResourceFolderPath(), filePath);
+        //public static T? LoadFromJson<T>(string filePath)
+        //{
+        //    filePath = Path.Combine(GetResourceFolderPath(), filePath);
 
-            string json = ReadTextFile(filePath);
-            T? obj = JsonConvert.DeserializeObject<T>(json);
+        //    string json = ReadTextFile(filePath);
+        //    T? obj = JsonConvert.DeserializeObject<T>(json);
 
-            return obj;
-        }
+        //    return obj;
+        //}
 
         public static List<T> LoadFromJsonToList<T>(string filePath)
         {
@@ -72,43 +100,6 @@ namespace Framework
         }
         #endregion
 
-        #region File Stream
-        // 한줄씩 읽어 String 배열로 반환하는 함수
-        public static string[] ReadTextFileByLines(string filePath)
-        {
-            filePath = Path.Combine(GetResourceFolderPath(), filePath);
-
-            // 파일이 존재하는지 확인
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException($"File Not Found : {filePath}");
-
-            List<string> messages = new List<string>();
-
-            using (StreamReader reader = new StreamReader(filePath))
-            {
-                string? messageLine;
-                while ((messageLine = reader.ReadLine()) != null)
-                    messages.Add(messageLine);
-            }
-
-            return messages.ToArray();
-        }
-
-        // 전체 텍스트를 읽어 하나에 String으로 반환하는 함수
-        public static string ReadTextFile(string filePath)
-        {
-            filePath = Path.Combine(GetResourceFolderPath(), filePath);
-
-            // 파일이 존재하는지 확인
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException($"File Not Found : {filePath}");
-
-            string content = File.ReadAllText(filePath);
-
-            return content;
-        }
-        #endregion
-
         #region Helper Methods
         // 기본 Resource Folder(상대 경로)를 찾기위한 함수
         public static string GetResourceFolderPath()
@@ -120,6 +111,28 @@ namespace Framework
             string ResourcePath = Path.Combine(spartaDungeonProjectDirectory, "Resources");
 
             return ResourcePath;
+        }
+
+        public static int CheckValidInput(int min, int max)
+        {
+            int keyInput;
+            bool result;
+
+            do
+            {
+                Manager.Instance.UI.ClearUIMessageBox();
+                Manager.Instance.UI.PrintTextBoxMessage(
+                    "메뉴를 선택 해주세요. (엔터키를 칠 필요 없습니다)", 0, ConsoleColor.Yellow);
+                result = int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out keyInput);
+            } while (result == false || CheckIfValid(keyInput, min, max) == false);
+
+            return keyInput;
+        }
+
+        private static bool CheckIfValid(int keyInput, int min, int max)
+        {
+            if (min <= keyInput && keyInput <= max) return true;
+            return false;
         }
         #endregion
     }

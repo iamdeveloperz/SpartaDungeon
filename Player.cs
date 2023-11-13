@@ -8,7 +8,7 @@ namespace SpartaDungeon
     #endregion
 
     #region Player Manager
-    public class  PlayerManager
+    public static class PlayerManager
     {
         
     }
