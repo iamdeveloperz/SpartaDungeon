@@ -237,11 +237,22 @@ namespace SpartaDungeon
             return textIndex;
         }
         // 문자열에 색깔을 더해주는 함수
-        public static void PrintTextToColor(string message, ConsoleColor color)
+        public void PrintTextToColor(string message, ConsoleColor color)
         {
             Console.ForegroundColor = color;
             Console.Write(message);
             Console.ResetColor();
+        }
+
+        public string PrintTextReplaceColor(string message, string targetText, ConsoleColor color = ConsoleColor.Gray)
+        {
+            string colorText = message.Replace(targetText, ConsoleColorText(targetText, color));
+            return colorText;
+        }
+
+        private string ConsoleColorText(string text, ConsoleColor color)
+        {
+            return $"\u001b[38;5;{(int)color}m{text}\u001b[0m";
         }
 
         #region Rename Function

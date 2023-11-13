@@ -1,0 +1,25 @@
+{
+  "PlayerData": {
+    "Name": "hh23i",
+    "Level": 1,
+    "Jobs": 0,
+    "BaseDamage": 50.0,
+    "AttackDamage": 50.0,
+    "BaseArmor": 5.0,
+    "DefenseArmor": 5.0,
+    "CurrentHp": 1000.0,
+    "MaxHp": 1000.0,
+    "CurrentSt": 250.0,
+    "MaxSt": 250.0,
+    "CurrentExp": 0.0,
+    "MaxExp": 1000.0,
+    "Gold": 10000
+  },
+  "Inventory": {
+    "InventoryItems": null
+  },
+  "Equipment": {
+    "Weapon": null,
+    "Armor": null
+  }
+}

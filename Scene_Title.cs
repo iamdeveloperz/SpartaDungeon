@@ -25,6 +25,7 @@ namespace SpartaDungeon
             base.Start();
             SettingFPS(2);
 
+            this.InitResource();
             this.Initialize();
             StartAsyncUpdate();
         }
@@ -74,8 +75,6 @@ namespace SpartaDungeon
             _menuSelector = E_TITLE_MENU.GAME_START;
 
             _lockable = new object();
-
-            this.InitResource();
         }
 
         private void InitResource()

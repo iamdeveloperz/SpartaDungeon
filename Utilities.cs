@@ -15,9 +15,11 @@ namespace Framework
     public enum ResourceKeys
     {
         TitleText,
+        MainGameMenuText,
+        CreatePlayerText,
         Player,
         Inventory,
-        ItemList
+        ItemList,
     }
     #endregion
 
@@ -33,6 +35,7 @@ namespace Framework
     public static class ResourcePaths
     {
         public const string TITLE_TXT_PATH = "TitleText.txt";
+        public const string MAIN_TXT_PATH = "MaimGameMenu.txt";
         public const string PLAYER_JSON_PATH = "Player.json";
         public const string INVENTORY_JSON_PATH = "Inventory.json";
         public const string ITEMLIST_JSON_PATH = "ItemList.json";
@@ -122,7 +125,7 @@ namespace Framework
             {
                 Manager.Instance.UI.ClearUIMessageBox();
                 Manager.Instance.UI.PrintTextBoxMessage(
-                    "메뉴를 선택 해주세요. (엔터키를 칠 필요 없습니다)", 0, ConsoleColor.Yellow);
+                    "메뉴를 선택 해주세요. (엔터키를 누를 필요 없습니다)", 0, ConsoleColor.Yellow);
                 result = int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out keyInput);
             } while (result == false || CheckIfValid(keyInput, min, max) == false);
 

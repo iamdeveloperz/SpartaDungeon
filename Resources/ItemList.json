@@ -1,0 +1,134 @@
+[
+ {
+  "UniqueID": "w001",
+  "ItemName": "낡은 검",
+  "ItemType": 0,
+  "Status": 55,
+  "IsUpgrade": false,
+  "IsEnchant": false,
+  "Description": "어디서든 구할 수 있는 낡은 검.",
+  "PurchasePrice": 900,
+  "SellPrice": 400
+ },
+ {
+  "UniqueID": "w002",
+  "ItemName": "무쇠 검",
+  "ItemType": 0,
+  "Status": 78,
+  "IsUpgrade": true,
+  "IsEnchant": false,
+  "Description": "살짝 무뎌있는 무쇠 검",
+  "PurchasePrice": 1700,
+  "SellPrice": 800
+ },
+ {
+  "UniqueID": "w003",
+  "ItemName": "철 검",
+  "ItemType": 0,
+  "Status": 102,
+  "IsUpgrade": true,
+  "IsEnchant": false,
+  "Description": "많이 날카롭다.. 베이지 말자",
+  "PurchasePrice": 2800,
+  "SellPrice": 1500
+ },
+ {
+  "UniqueID": "w004",
+  "ItemName": "양손검",
+  "ItemType": 0,
+  "Status": 155,
+  "IsUpgrade": true,
+  "IsEnchant": false,
+  "Description": "아주 큰 검",
+  "PurchasePrice": 4400,
+  "SellPrice": 2000
+ },
+ {
+  "UniqueID": "w005",
+  "ItemName": "츠바이핸더",
+  "ItemType": 0,
+  "Status": 222,
+  "IsUpgrade": true,
+  "IsEnchant": true,
+  "Description": "어떤 귀족이 썻다는 설이 있다.",
+  "PurchasePrice": 7700,
+  "SellPrice": 4500
+ },
+ {
+  "UniqueID": "w006",
+  "ItemName": "츠바이핸더(진)",
+  "ItemType": 0,
+  "Status": 298,
+  "IsUpgrade": true,
+  "IsEnchant": true,
+  "Description": "스파르타 후작의 보물이다.",
+  "PurchasePrice": 12000,
+  "SellPrice": 8000
+ },
+ {
+  "UniqueID": "w007",
+  "ItemName": "엑스칼리버",
+  "ItemType": 0,
+  "Status": 411,
+  "IsUpgrade": true,
+  "IsEnchant": true,
+  "Description": "승리는 약속.",
+  "PurchasePrice": 29000,
+  "SellPrice": 18000
+ },
+ {
+  "UniqueID": "a001",
+  "ItemName": "낡은 갑옷",
+  "ItemType": 1,
+  "Status": 8,
+  "IsUpgrade": false,
+  "IsEnchant": false,
+  "Description": "너무 낡아 막을 수 없는 갑옷",
+  "PurchasePrice": 1300,
+  "SellPrice": 500
+ },
+ {
+  "UniqueID": "a002",
+  "ItemName": "무쇠 갑옷",
+  "ItemType": 1,
+  "Status": 12,
+  "IsUpgrade": false,
+  "IsEnchant": false,
+  "Description": "많이 무뎌있는 갑옷",
+  "PurchasePrice": 2200,
+  "SellPrice": 900
+ },
+ {
+  "UniqueID": "a003",
+  "ItemName": "철 갑옷",
+  "ItemType": 1,
+  "Status": 19,
+  "IsUpgrade": true,
+  "IsEnchant": false,
+  "Description": "많이 무거운 갑옷",
+  "PurchasePrice": 3700,
+  "SellPrice": 1900
+ },
+ {
+  "UniqueID": "a004",
+  "ItemName": "중갑옷",
+  "ItemType": 1,
+  "Status": 33,
+  "IsUpgrade": true,
+  "IsEnchant": false,
+  "Description": "중세기사들이 썻던 갑옷이다",
+  "PurchasePrice": 5500,
+  "SellPrice": 3100
+ },
+ {
+  "UniqueID": "a005",
+  "ItemName": "스파르타 투구",
+  "ItemType": 1,
+  "Status": 41,
+  "IsUpgrade": true,
+  "IsEnchant": true,
+  "Description": "스파르타 후작의 보물",
+  "PurchasePrice": 9900,
+  "SellPrice": 5700
+ }
+]
