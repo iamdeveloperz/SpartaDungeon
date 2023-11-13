@@ -1,10 +1,14 @@
-﻿namespace SpartaDungeon
+﻿
+using Framework;
+
+namespace SpartaDungeon
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            // Window Console Resize
+            WindowAPI.ConsoleWindowResize();
         }
     }
 }

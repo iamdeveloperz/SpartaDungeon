@@ -60,11 +60,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\BootCamp Git\\SpartaDungeon\\SpartaDungeon\\SpartaDungeon.csproj",
+      "projectUniqueName": "D:\\BootCamp Git\\SpartaDungeon\\SpartaDungeon.csproj",
       "projectName": "SpartaDungeon",
-      "projectPath": "D:\\BootCamp Git\\SpartaDungeon\\SpartaDungeon\\SpartaDungeon.csproj",
+      "projectPath": "D:\\BootCamp Git\\SpartaDungeon\\SpartaDungeon.csproj",
       "packagesPath": "C:\\Users\\iamde\\.nuget\\packages\\",
-      "outputPath": "D:\\BootCamp Git\\SpartaDungeon\\SpartaDungeon\\obj\\",
+      "outputPath": "D:\\BootCamp Git\\SpartaDungeon\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\iamde\\AppData\\Roaming\\NuGet\\NuGet.Config",

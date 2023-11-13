@@ -64,6 +64,14 @@ namespace Framework
             _isAsyncUpdate = false;
         }
 
+        public virtual void Reset()
+        {
+            _isRunning = false;
+
+            if(_timer != null)
+                this.StopUpdate();
+        }
+
         protected void SettingFPS(int fps)
         {
             consoleFps = CONSOLE_TIME_MS / fps;
