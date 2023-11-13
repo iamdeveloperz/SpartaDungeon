@@ -1,0 +1,50 @@
+[
+  {
+    "itemName": "무쇠 갑옷",
+    "itemType": 1,
+    "itemStat": 8,
+    "itemDescription": "무쇠로 만들어져 튼튼한 갑옷입니다.",
+    "PurchasePrice": 1000,
+    "SellPrice": 500
+  },
+  {
+    "itemName": "낡은 검",
+    "itemType": 0,
+    "itemStat": 35,
+    "itemDescription": "어디서나 흔히 볼 수 있는 낡은 검입니다.",
+    "PurchasePrice": 600,
+    "SellPrice": 200
+  },
+  {
+    "itemName": "스파르타 갑옷",
+    "itemType": 1,
+    "itemStat": 18,
+    "itemDescription": "스파르타들이 썼다던 중무장 갑옷입니다.",
+    "PurchasePrice": 3000,
+    "SellPrice": 1800
+  },
+  {
+    "itemName": "스파르타 창",
+    "itemType": 0,
+    "itemStat": 124,
+    "itemDescription": "스파르타들이 썻다던 대인용 창입니다.",
+    "PurchasePrice": 5500,
+    "SellPrice": 3800
+  },
+  {
+    "itemName": "리볼버",
+    "itemType": 0,
+    "itemStat": 97,
+    "itemDescription": ".357구경을 사용하는 일반 리볼버입니다.",
+    "PurchasePrice": 4900,
+    "SellPrice": 3200
+  },
+  {
+    "itemName": "케블라 아머",
+    "itemType": 1,
+    "itemStat": 27,
+    "itemDescription": "파괴력을 흡수하는 기본 방어구입니다.",
+    "PurchasePrice": 7300,
+    "SellPrice": 4800
+  }
+]

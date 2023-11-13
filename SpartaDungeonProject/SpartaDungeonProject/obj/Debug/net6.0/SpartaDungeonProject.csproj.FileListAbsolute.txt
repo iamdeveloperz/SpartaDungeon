@@ -1,0 +1,17 @@
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\bin\Debug\net6.0\SpartaDungeonProject.exe
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\bin\Debug\net6.0\SpartaDungeonProject.deps.json
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\bin\Debug\net6.0\SpartaDungeonProject.runtimeconfig.json
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\bin\Debug\net6.0\SpartaDungeonProject.dll
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\bin\Debug\net6.0\SpartaDungeonProject.pdb
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\SpartaDungeonProject.GeneratedMSBuildEditorConfig.editorconfig
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\SpartaDungeonProject.AssemblyInfoInputs.cache
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\SpartaDungeonProject.AssemblyInfo.cs
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\SpartaDungeonProject.csproj.CoreCompileInputs.cache
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\SpartaDungeonProject.dll
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\refint\SpartaDungeonProject.dll
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\SpartaDungeonProject.pdb
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\SpartaDungeonProject.genruntimeconfig.cache
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\ref\SpartaDungeonProject.dll
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\SpartaDungeonProject.csproj.AssemblyReference.cache
+D:\BootCamp Git\CSharp_Programming\SpartaDungeonProject\SpartaDungeonProject\obj\Debug\net6.0\SpartaDungeonProject.csproj.CopyComplete
