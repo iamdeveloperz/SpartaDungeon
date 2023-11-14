@@ -64,6 +64,29 @@ namespace SpartaDungeon
 
         public void SortingInventory(E_SORTING_TYPE sortType)
         {
+            var attackItems = _items.Values
+                .Where(item => item.Item.ItemType == E_ITYPE.WEAPON)
+                .OrderByDescending(item => item.Item.Status)
+                .ToList();
+
+            var armorItem = _items.Values
+                .Where(item => item.Item.ItemType == E_ITYPE.ARMOR)
+                .OrderByDescending(item => item.Item.Status)
+                .ToList();
+
+            var sortedList = new List<InventoryItem>();
+
+            if(sortType == E_SORTING_TYPE.TYPEDEF)
+            {
+                sortedList.AddRange(armorItem);
+                sortedList.AddRange(attackItems);
+            } 
+            else if(sortType == E_SORTING_TYPE.TYPEATK)
+            {
+                sortedList.AddRange(attackItems);
+                sortedList.AddRange(armorItem);
+            }
+
             var sortedItems = sortType switch
             {
                 E_SORTING_TYPE.NAME
@@ -71,17 +94,13 @@ namespace SpartaDungeon
                 E_SORTING_TYPE.EQUIP
                     => _items.Values.OrderByDescending(item => item.IsEquipped).ToDictionary(item => item.Item.ItemID),
                 E_SORTING_TYPE.TYPEATK
-                    => _items.Values
-                    .Where(item => item.Item.ItemType == E_ITYPE.WEAPON)
-                    .OrderByDescending(item => item.Item.Status)
-                    .ToDictionary(item => item.Item.ItemID),
+                    => sortedList.ToDictionary(item => item.Item.ItemID),
                 E_SORTING_TYPE.TYPEDEF
-                    => _items.Values
-                    .Where(item => item.Item.ItemType == E_ITYPE.ARMOR)
-                    .OrderByDescending(item => item.Item.Status)
-                    .ToDictionary(item => item.Item.ItemID),
+                    => sortedList.ToDictionary(item => item.Item.ItemID),
                 _ => throw new ArgumentException("Invalid Sroting Type")
             } ?? throw new NullReferenceException("Inventory Item dictionary null refrence");
+
+            _items = sortedItems;
         }
 
         public InventoryItem GetItemByIndex(int index)

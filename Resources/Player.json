@@ -1,12 +1,12 @@
 {
   "PlayerData": {
-    "Name": "2",
+    "Name": "희성",
     "Level": 1,
     "Jobs": 0,
     "BaseDamage": 50.0,
     "AttackDamage": 122.0,
     "BaseArmor": 5.0,
-    "DefenseArmor": 13.0,
+    "DefenseArmor": 5.0,
     "CurrentHp": 1000.0,
     "MaxHp": 1000.0,
     "CurrentSt": 250.0,
@@ -17,17 +17,17 @@
   },
   "Inventory": {
     "InventoryItems": {
-      "w001": {
+      "a001": {
         "Data": {
-          "UniqueID": "w001",
-          "ItemName": "낡은 검",
-          "ItemType": 0,
-          "Status": 55,
+          "UniqueID": "a001",
+          "ItemName": "낡은 갑옷",
+          "ItemType": 1,
+          "Status": 8,
           "IsUpgrade": true,
           "IsEnchant": false,
-          "ItemDescription": "낡아 제기능을 못하는 검입니다.",
-          "PurchasePrice": 900,
-          "SellPrice": 400
+          "ItemDescription": "낡아 제기능을 못하는 방어구입니다.",
+          "PurchasePrice": 1500,
+          "SellPrice": 700
         },
         "ItemQuantities": 1,
         "IsEquipped": false
@@ -47,20 +47,20 @@
         "ItemQuantities": 1,
         "IsEquipped": true
       },
-      "a001": {
+      "w001": {
         "Data": {
-          "UniqueID": "a001",
-          "ItemName": "낡은 갑옷",
-          "ItemType": 1,
-          "Status": 8,
+          "UniqueID": "w001",
+          "ItemName": "낡은 검",
+          "ItemType": 0,
+          "Status": 55,
           "IsUpgrade": true,
           "IsEnchant": false,
-          "ItemDescription": "낡아 제기능을 못하는 방어구입니다.",
-          "PurchasePrice": 1500,
-          "SellPrice": 700
+          "ItemDescription": "낡아 제기능을 못하는 검입니다.",
+          "PurchasePrice": 900,
+          "SellPrice": 400
         },
         "ItemQuantities": 1,
-        "IsEquipped": true
+        "IsEquipped": false
       }
     }
   },
@@ -80,21 +80,7 @@
       "ItemQuantities": 1,
       "IsEquipped": true
     },
-    "Armor": {
-      "Data": {
-        "UniqueID": "a001",
-        "ItemName": "낡은 갑옷",
-        "ItemType": 1,
-        "Status": 8,
-        "IsUpgrade": true,
-        "IsEnchant": false,
-        "ItemDescription": "낡아 제기능을 못하는 방어구입니다.",
-        "PurchasePrice": 1500,
-        "SellPrice": 700
-      },
-      "ItemQuantities": 1,
-      "IsEquipped": true
-    },
+    "Armor": null,
     "Accessories": null
   }
 }
