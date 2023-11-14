@@ -95,6 +95,7 @@ namespace SpartaDungeon
                     break;
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
+                    ViewTable.PrintShopMenu(Manager.Instance.PM.GetPlayer());
                     break;
                 case ConsoleKey.D4:
                 case ConsoleKey.NumPad4:

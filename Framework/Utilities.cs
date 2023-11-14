@@ -26,6 +26,7 @@ namespace Framework
         MainGameMenuText,
         StatusMenuText,
         InventoryMenuText,
+        ShopMenuText,
         CreatePlayerText,
         Player,
         ItemList,
@@ -68,50 +69,6 @@ namespace Framework
 
         #endregion
 
-        #region Json
-        // Generic Json으로 직렬화된 데이터 저장
-        public static void SaveToJson<T>(T obj, string filePath)
-        {
-            filePath = Path.Combine(GetResourceFolderPath(), filePath);
-
-            string json = JsonConvert.SerializeObject(obj, Formatting.Indented);
-            File.WriteAllText(filePath, json);
-        }
-
-        // Generic Json 직렬화된 데이터 역직렬화
-        //public static T? LoadFromJson<T>(string filePath)
-        //{
-        //    filePath = Path.Combine(GetResourceFolderPath(), filePath);
-
-        //    string json = ReadTextFile(filePath);
-        //    T? obj = JsonConvert.DeserializeObject<T>(json);
-
-        //    return obj;
-        //}
-
-        public static List<T> LoadFromJsonToList<T>(string filePath)
-        {
-            filePath = Path.Combine(GetResourceFolderPath(), filePath);
-
-            List<T>? itemllist = null;
-
-            try
-            {
-                using (StreamReader reader = File.OpenText(filePath))
-                {
-                    JsonSerializer serializer = new JsonSerializer();
-                    itemllist = serializer.Deserialize<List<T>>(new JsonTextReader(reader));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.Write($"Error가 발생했습니다. JSON : {ex.Message}");
-            }
-
-            return itemllist ?? new List<T>();
-        }
-        #endregion
-
         #region Helper Methods
         // 기본 Resource Folder(상대 경로)를 찾기위한 함수
         public static string GetResourceFolderPath()
@@ -144,6 +101,27 @@ namespace Framework
         {
             if (min <= keyInput && keyInput <= max) return true;
             return false;
+        }
+
+        public static int PrintTitle(ResourceKeys key)
+        {
+            string titleTextOrigin = Manager.Instance.Resource.GetTextResource(key);
+            string[] titleTextSplited = titleTextOrigin.Split(new[] { "\n" }, StringSplitOptions.None);
+
+            Console.Clear();
+
+            const int START_POS = 1;
+            int i;
+            for (i = 0; i < titleTextSplited.Length; ++i)
+            {
+                ConsoleColor color = ConsoleColor.Gray;
+                if (i < 3) color = ConsoleColor.Yellow;
+                else if (i >= 3 && i < 5) color = ConsoleColor.Cyan;
+
+                Manager.Instance.UI.PrintTextAlignCenter(titleTextSplited[i], i + START_POS, color);
+            }
+
+            return i;
         }
         #endregion
     }

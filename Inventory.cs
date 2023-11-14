@@ -176,7 +176,7 @@ namespace SpartaDungeon
                     formattedItemName += " (E)";
                 dataRow += Manager.Instance.UI.GetPaddingToMessage(invenItem.Item.ItemID, widthID - 1) + "│";
                 dataRow += Manager.Instance.UI.GetPaddingToMessage(formattedItemName, widthName - 1) + "│";
-                dataRow += Manager.Instance.UI.GetPaddingToMessage($"{itemType}", widthTypeStat - 1) + "│";
+                dataRow += Manager.Instance.UI.GetPaddingToMessage(itemType, widthTypeStat - 1) + "│";
                 dataRow += Manager.Instance.UI.GetPaddingToMessage(invenItem.ItemQuantities.ToString(), widthQuantities - 1) + "│";
                 dataRow += Manager.Instance.UI.GetPaddingToMessage(invenItem.Item.ItemDescription, widthDescription - 1) + "│";
 

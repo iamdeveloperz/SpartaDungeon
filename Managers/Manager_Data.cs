@@ -100,6 +100,8 @@ namespace SpartaDungeon.Managers
 
             return items;
         }
+
+        public List<Item>? GetItemList() { return _items; }
         #endregion
     }
 }

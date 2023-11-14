@@ -6,27 +6,12 @@ namespace SpartaDungeon
 {
     public static class ViewTable
     {
-
         #region Status Menu
         public static void PrintCharacterStatus(Player player)
         {
-            string statusText = Manager.Instance.Resource.GetTextResource(ResourceKeys.StatusMenuText);
-            string[] textStatus = statusText.Split(new[] { "\n" }, StringSplitOptions.None);
+            int posY = Utilities.PrintTitle(ResourceKeys.StatusMenuText);
 
-            Console.Clear();
-
-            const int START_POS = 1;
-            int i;
-            for (i = 0; i < textStatus.Length; ++i)
-            {
-                ConsoleColor color = ConsoleColor.Gray;
-                if (i < 3) color = ConsoleColor.Yellow;
-                else if (i >= 3 && i < 5) color = ConsoleColor.Cyan;
-
-                Manager.Instance.UI.PrintTextAlignCenter(textStatus[i], i + START_POS, color);
-            }
-
-            player?.DrawCharacterStatus(i);
+            player?.DrawCharacterStatus(posY);
 
             Manager.Instance.UI.DrawUIMessageBox();
             Manager.Instance.UI.PrintTextBoxMessage("[ 0. 나가기 ]", 0, ConsoleColor.Blue);
@@ -38,24 +23,10 @@ namespace SpartaDungeon
         #region Inventory Menu
         public static void PrintInventoryMenu(Player player)
         {
-            string inventoryText = Manager.Instance.Resource.GetTextResource(ResourceKeys.InventoryMenuText);
-            string[] textInventory = inventoryText.Split(new[] { "\n" }, StringSplitOptions.None);
+            int posY = Utilities.PrintTitle(ResourceKeys.InventoryMenuText);
 
-            Console.Clear();
-
-            const int START_POS = 1;
-            int i;
-            for (i = 0; i < textInventory.Length; ++i)
-            {
-                ConsoleColor color = ConsoleColor.Gray;
-                if (i < 3) color = ConsoleColor.Yellow;
-                else if (i >= 3 && i < 5) color = ConsoleColor.Cyan;
-
-                Manager.Instance.UI.PrintTextAlignCenter(textInventory[i], i + START_POS, color);
-            }
-
-            // 테이블
-            player?.Inventory?.DrawTable(i + 1);
+            // 인벤토리 테이블을 그리는 메서드
+            player?.Inventory?.DrawTable(posY + 1);
 
             Manager.Instance.UI.DrawUIMessageBox();
             Manager.Instance.UI.PrintTextBoxMessage(" [ 1. 장착관리 ]  [ 2. 정렬 ]  [ 0. 나가기 ]", 0, ConsoleColor.Blue);
@@ -66,7 +37,7 @@ namespace SpartaDungeon
                 case 0:
                     break;
                 case 1:
-                    player?.Inventory?.DrawTable(i + 1, true);
+                    player?.Inventory?.DrawTable(posY + 1, true);
                     break;
                 case 2:
                     Manager.Instance.UI.ClearUIMessageBox();
@@ -104,6 +75,16 @@ namespace SpartaDungeon
                 _ => throw new ArgumentException("Invalid selectNumber")
             };
         }
+        #endregion
+
+        #region Shop Menu
+        public static void PrintShopMenu(Player player)
+        {
+            int posY = Utilities.PrintTitle(ResourceKeys.ShopMenuText);
+
+            Shop.DrawShopTable(posY + 1, player);
+        }
+        
         #endregion
     }
 }
