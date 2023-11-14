@@ -28,6 +28,9 @@ namespace SpartaDungeon
 
             Manager.Instance.UI.ClearRowToRow(9, EndPosY);
             Manager.Instance.UI.DrawUIMessageBox();
+            Manager.Instance.UI.PrintTextBoxMessage("[보유 골드] ");
+            Manager.Instance.UI.PrintTextToColor($"  [ {player.PlayerData.Gold} G ]", ConsoleColor.Yellow);
+            Manager.Instance.UI.PrintTextBoxMessage("[1]. 아이템 구매 / [0]. 나가기", 1);
 
             // Table Header
             string headerRow = "│";
@@ -103,15 +106,27 @@ namespace SpartaDungeon
                     if (currentPage * itemsPerPage >= numRows)
                         currentPage = 0;
                 }
-                else if(key == ConsoleKey.Q) 
+                else if (key == ConsoleKey.Q)
                 {
                     currentPage--;
                     if (currentPage < 0)
                         currentPage = (numRows - 1) / itemsPerPage;
                 }
+                else if (key == ConsoleKey.D1 || key == ConsoleKey.NumPad1)
+                {
+                    
+                }
+                else if (key == ConsoleKey.D0 || key == ConsoleKey.NumPad0)
+                    break;
 
                 Manager.Instance.UI.ClearRowToRow(StartPosY, EndPosY);
             }
         }
+
+        public static void PurchaseMode(Player player)
+        {
+
+        }
+
     }
 }
