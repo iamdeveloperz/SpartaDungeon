@@ -12,8 +12,8 @@ namespace SpartaDungeon
 
     public class Item
     {
-        [JsonProperty(PropertyName = "UniqueID")] public string? ItemID { get; set; }
-        [JsonProperty(PropertyName = "ItemName")] public string? ItemName { get; set; }
+        [JsonProperty(PropertyName = "UniqueID")] public string ItemID { get; set; }
+        [JsonProperty(PropertyName = "ItemName")] public string ItemName { get; set; }
         [JsonProperty(PropertyName = "ItemType")] public E_ITYPE ItemType { get; set; }
         [JsonProperty(PropertyName = "Status")] public int Status { get; set; }
         [JsonProperty(PropertyName = "IsUpgrade")] public bool IsUpgrade { get; set; }

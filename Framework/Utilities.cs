@@ -12,6 +12,14 @@ namespace Framework
         GAME_EXIT
     }
 
+    public enum E_SORTING_TYPE
+    {
+        NAME,
+        EQUIP,
+        TYPEATK,
+        TYPEDEF
+    }
+
     public enum ResourceKeys
     {
         TitleText,

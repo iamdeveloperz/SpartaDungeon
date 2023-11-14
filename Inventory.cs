@@ -62,6 +62,28 @@ namespace SpartaDungeon
             }
         }
 
+        public void SortingInventory(E_SORTING_TYPE sortType)
+        {
+            var sortedItems = sortType switch
+            {
+                E_SORTING_TYPE.NAME
+                    => _items.Values.OrderBy(item => item.Item.ItemName.Length).ToDictionary(item => item.Item.ItemID),
+                E_SORTING_TYPE.EQUIP
+                    => _items.Values.OrderByDescending(item => item.IsEquipped).ToDictionary(item => item.Item.ItemID),
+                E_SORTING_TYPE.TYPEATK
+                    => _items.Values
+                    .Where(item => item.Item.ItemType == E_ITYPE.WEAPON)
+                    .OrderByDescending(item => item.Item.Status)
+                    .ToDictionary(item => item.Item.ItemID),
+                E_SORTING_TYPE.TYPEDEF
+                    => _items.Values
+                    .Where(item => item.Item.ItemType == E_ITYPE.ARMOR)
+                    .OrderByDescending(item => item.Item.Status)
+                    .ToDictionary(item => item.Item.ItemID),
+                _ => throw new ArgumentException("Invalid Sroting Type")
+            } ?? throw new NullReferenceException("Inventory Item dictionary null refrence");
+        }
+
         public InventoryItem GetItemByIndex(int index)
         {
             if (index >= 0 && index < _items.Count)
