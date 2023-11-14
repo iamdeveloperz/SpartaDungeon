@@ -1,6 +1,7 @@
 ﻿
 using Newtonsoft.Json;
 using Framework;
+using SpartaDungeon.Managers;
 
 namespace SpartaDungeon
 {
@@ -36,8 +37,9 @@ namespace SpartaDungeon
 
     public class Equipment
     {
-        public Item Weapon { get; set; }
-        public Item Armor { get; set; }
+        public InventoryItem? Weapon { get; set; }
+        public InventoryItem? Armor { get; set; }
+        public InventoryItem? Accessories { get; set; }
     }
 
     #region Player Class
@@ -56,13 +58,23 @@ namespace SpartaDungeon
         #region Main Methods
         public Player()
         {
-
+            _playerData = new PlayerData();
+            _inventory = new Inventory();
+            _equipment = new Equipment();
         }
 
-        public void InitPlayerData()
+        public void SettingPlayerInfo(PlayerData playerData, Inventory inventory, Equipment equipment)
+        {
+            _playerData = playerData;
+            _inventory = inventory;
+            _equipment = equipment;
+        }
+
+        public void InitPlayerData(string playerName)
         {
             if (_playerData == null)
                 throw new NullReferenceException("Null Reference : PlayerData");
+            _playerData.Name = playerName;
             _playerData.Level = 1;
             _playerData.BaseDamage = 50;
             _playerData.AttackDamage = _playerData.BaseDamage;
@@ -76,6 +88,58 @@ namespace SpartaDungeon
             _playerData.MaxExp = 1000;
             _playerData.CurrentExp = 0;
             _playerData.Gold = 10000;
+
+            _inventory.AddItemToInventory(Manager.Instance.Data.GetItemData("w001"));
+            _inventory.AddItemToInventory(Manager.Instance.Data.GetItemData("w002"));
+            _inventory.AddItemToInventory(Manager.Instance.Data.GetItemData("a001"));
+        }
+        #endregion
+
+        #region Helper Methods
+        public void DrawCharacterStatus(int posY)
+        {
+            string formattedName = "[ " + _playerData?.Name + " ] 님의 스테이터스입니다.";
+            Manager.Instance.UI.PrintTextAlignCenter(formattedName, ++posY, ConsoleColor.Yellow);
+
+            string formattedLevel = _playerData?.Level.ToString("D2");
+            string formattedJob = _playerData?.Jobs switch
+            {
+                E_JOBS.NONE => "무직",
+                E_JOBS.WARRIOR => "전사",
+                E_JOBS.ARCHER => "궁수",
+                E_JOBS.GUNNER => "거너",
+                E_JOBS.ASSASSIN => "암살자",
+                E_JOBS.MAGICIAN => "견습 마법사",
+                _ => ""
+            };
+
+            string formattedBaseDamge = _playerData.BaseDamage.ToString();
+            string formattedBaseArmor = _playerData.BaseArmor.ToString();
+            if (_equipment?.Weapon != null)
+                formattedBaseDamge += $" ( +{_equipment.Weapon.Item.Status} )";
+            if (_equipment?.Armor != null)
+                formattedBaseArmor += $" ( +{_equipment.Armor.Item.Status} )";
+
+            posY += 2;
+            Manager.Instance.UI.PrintTextAlignLeftRight("LEVEL  .  " + formattedLevel, true, 3, posY++, ConsoleColor.Magenta);
+            Manager.Instance.UI.PrintTextAlignLeftRight("직업 : [ " + formattedJob + " ]", true, 3, posY++);
+            Manager.Instance.UI.PrintTextAlignLeftRight("기본 공격력 : " + _playerData.BaseDamage, true, 3, posY++);
+            if (_equipment?.Weapon != null)
+                Manager.Instance.UI.PrintTextToColor($" ( +{_equipment.Weapon.Item.Status} )", ConsoleColor.Yellow);
+            Manager.Instance.UI.PrintTextAlignLeftRight("종합 공격력 : " + _playerData.AttackDamage, true, 3, posY++);
+            Manager.Instance.UI.PrintTextAlignLeftRight("기본 방어력 : " + _playerData.BaseArmor, true, 3, posY++);
+            if (_equipment?.Armor != null)
+                Manager.Instance.UI.PrintTextToColor($" ( +{_equipment.Armor.Item.Status} )", ConsoleColor.Yellow);
+            Manager.Instance.UI.PrintTextAlignLeftRight("종합 방어력 : " + _playerData.DefenseArmor, true, 3, posY++);
+
+            posY += 2;
+            string foramttedValue = " [ " + _playerData.CurrentHp.ToString() + " ] [ " + _playerData.MaxHp.ToString() + " ] ";
+            Manager.Instance.UI.PrintTextAlignLeftRight("HP  " + foramttedValue, true, 3, posY++, ConsoleColor.Red);
+            foramttedValue = " [ " + _playerData.CurrentSt.ToString() + " ] [ " + _playerData.MaxSt.ToString() + " ] ";
+            Manager.Instance.UI.PrintTextAlignLeftRight("ST  " + foramttedValue, true, 3, posY++, ConsoleColor.Blue);
+            foramttedValue = " [ " + _playerData.CurrentExp.ToString() + " ] [ " + _playerData.MaxExp.ToString() + " ] ";
+            Manager.Instance.UI.PrintTextAlignLeftRight("EXP  " + foramttedValue, true, 3, posY++, ConsoleColor.Green);
+            Manager.Instance.UI.PrintTextAlignLeftRight("GOLD  [ " + _playerData.Gold.ToString() + "G ] ", true, 3, ++posY, ConsoleColor.Yellow);
         }
         #endregion
     }
@@ -94,7 +158,86 @@ namespace SpartaDungeon
             if (_player == null)
                 throw new NullReferenceException("Player not setting. -Player Manager-");
 
-            
+            this.DrawCreatePlayerPopup();
+        }
+
+        public void Equip(InventoryItem item)
+        {
+            if (_player?.Equipment == null)
+                throw new NullReferenceException("Equipment Not Allocated.");
+
+            if (item.IsEquipped)
+            {
+                Unequip(item.Item.ItemType);
+                item.IsEquipped = false;
+            }
+            else
+            {
+                switch (item.Item.ItemType)
+                {
+                    case E_ITYPE.WEAPON:
+                        if (_player.Equipment.Weapon != null)
+                            Unequip(E_ITYPE.WEAPON);
+                        _player.Equipment.Weapon = item;
+                        _player.PlayerData.AttackDamage += _player.Equipment.Weapon.Item.Status;
+                        _player.Equipment.Weapon.IsEquipped = true;
+                        break;
+                    case E_ITYPE.ARMOR:
+                        if (_player.Equipment.Armor != null)
+                            Unequip(E_ITYPE.ARMOR);
+                        _player.Equipment.Armor = item;
+                        _player.PlayerData.DefenseArmor += _player.Equipment.Armor.Item.Status;
+                        _player.Equipment.Armor.IsEquipped = true;
+                        break;
+                    case E_ITYPE.ACCESSORIES:
+                        if (_player.Equipment.Accessories != null)
+                            Unequip(E_ITYPE.ACCESSORIES);
+                        _player.Equipment.Accessories = item;
+                        _player.Equipment.Accessories.IsEquipped = true;
+                        break;
+                }
+            }
+            this.SavePlayerData();
+        }
+
+        private void Unequip(E_ITYPE itemType)
+        {
+            if (_player?.Equipment == null)
+                throw new NullReferenceException("Equipment Not Allocated.");
+
+            switch (itemType)
+            {
+                case E_ITYPE.WEAPON:
+                    if (_player.Equipment.Weapon != null)
+                    {
+                        _player.PlayerData.AttackDamage -= _player.Equipment.Weapon.Item.Status;
+                        _player.Equipment.Weapon.IsEquipped = false;
+                        _player.Equipment.Weapon = null;
+                    }
+                    break;
+                case E_ITYPE.ARMOR:
+                    if (_player.Equipment.Armor != null)
+                    {
+                        _player.PlayerData.DefenseArmor -= _player.Equipment.Armor.Item.Status;
+                        _player.Equipment.Armor.IsEquipped = false;
+                        _player.Equipment.Armor = null;
+                    }
+                    break;
+                case E_ITYPE.ACCESSORIES:
+                    if (_player.Equipment.Accessories != null)
+                    {
+                        _player.Equipment.Accessories.IsEquipped = false;
+                        _player.Equipment.Accessories = null;
+                    }
+                    break;
+            }
+
+            this.SavePlayerData();
+        }
+
+        private void SavePlayerData()
+        {
+            Manager.Instance.Data.SavePlayer(_player, ResourceKeys.Player);
         }
         #endregion
 
@@ -104,11 +247,12 @@ namespace SpartaDungeon
         #endregion
 
         #region Helper Methods
-        private void CreatePlayerName()
+        private void DrawCreatePlayerPopup()
         {
             Console.Clear();
 
             Manager.Instance.UI.ClearUIMessageBox();
+            Manager.Instance.UI.DrawUIMessageBox();
 
             string createTexts = Manager.Instance.Resource.GetTextResource(ResourceKeys.CreatePlayerText);
             if (string.IsNullOrEmpty(createTexts))
@@ -119,15 +263,34 @@ namespace SpartaDungeon
             {
                 ConsoleColor color = ConsoleColor.Gray;
 
-                if (lines[i].Contains("타이틀")) color = ConsoleColor.Cyan;
+                if (lines[i].Contains("처음")) color = ConsoleColor.Cyan;
                 Manager.Instance.UI.PrintTextAlignCenter(lines[i], i + 1, color);
             }
 
             while(true)
             {
-                Console.CursorVisible = true;
                 Manager.Instance.UI.ClearUIMessageBox();
                 Manager.Instance.UI.PrintTextBoxMessage("이름을 입력해주세요 >> ");
+                Console.CursorVisible = true;
+                string? playerName = Console.ReadLine();
+
+                Manager.Instance.UI.PrintTextBoxMessage("입력하신 이름이 맞습니까? [Y/N] >> ", 1);
+                string? select = Console.ReadLine();
+
+                if (select == "Y" || select == "y")
+                {
+                    _player?.InitPlayerData(playerName);
+                    this.SavePlayerData();
+                    break;
+                }
+                else if (select == "N" || select == "n")
+                    Manager.Instance.UI.ClearUIMessageBox();
+                else
+                {
+                    Manager.Instance.UI.ClearUIMessageBox();
+                    Manager.Instance.UI.PrintTextBoxMessage("올바른 값을 입력하세요. (아무키나 누르시오)", 0);
+                    Console.ReadKey();
+                }
             }
         }
         #endregion

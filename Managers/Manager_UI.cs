@@ -1,5 +1,5 @@
 ﻿
-namespace SpartaDungeon
+namespace SpartaDungeon.Managers
 {
     public class Manager_UI
     {
@@ -137,10 +137,10 @@ namespace SpartaDungeon
             int col = boxPosY + 1;
             int row = boxPosX + 1;
 
-            for(int idx = col; idx < (col + boxHeight) - 2; ++idx)
+            for (int idx = col; idx < (col + boxHeight) - 2; ++idx)
             {
                 SetPos(row, idx);
-                PrintText(new string(' ', boxWidth));
+                PrintText(new string(' ', boxWidth - 2));
             }
         }
 
@@ -189,25 +189,19 @@ namespace SpartaDungeon
         }
 
         // 좌우 공백 채워 정렬하는 메소드
-        private string GetPaddingToMessage(string message, int width, bool isLeftAligned = false)
+        public string GetPaddingToMessage(string message, int width, bool isLeftAligned = true)
         {
             int messageLength = GetMessageUTFLength(message);
 
             if (messageLength >= width)
                 return message.Substring(0, GetMessageUTFIndex(message, width));
-            else
-            {
-                if (!isLeftAligned)
-                {
-                    int paddingLength = width - messageLength;
-                    int leftPadding = paddingLength / 2;
-                    int rightPadding = paddingLength - leftPadding;
 
-                    return new string(' ', leftPadding) + message + new string(' ', rightPadding);
-                }
-                else
-                    return message.PadLeft(width - (GetMessageUTFIndex(message, messageLength) - width));
-            }
+            int paddingLength = width - GetMessageKoreanCount(message);
+
+            if (isLeftAligned)
+                return message.PadRight(paddingLength);
+            else
+                return message.PadLeft(paddingLength);
         }
         // 한글과 같은 2byte를 길이를 반환하기 위한 메소드
         public int GetMessageUTFLength(string message)
@@ -235,6 +229,16 @@ namespace SpartaDungeon
             }
 
             return textIndex;
+        }
+        public int GetMessageKoreanCount(string message)
+        {
+            int koreanIndex = 0;
+            foreach (char ch in message)
+            {
+                if (ch >= '\uAC00' && ch <= '\uD7A3')
+                    ++koreanIndex;
+            }
+            return koreanIndex;
         }
         // 문자열에 색깔을 더해주는 함수
         public void PrintTextToColor(string message, ConsoleColor color)

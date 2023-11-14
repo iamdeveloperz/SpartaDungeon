@@ -2,34 +2,30 @@
 using System;
 using System.Runtime.InteropServices;
 using Framework;
+using SpartaDungeon.Managers;
 
 namespace SpartaDungeon
 {
     internal class Program
     {
-        [DllImport("user32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
-        private static extern int MessageBox(IntPtr hWnd, string lpText, string lpCaption, uint uType);
-
         static void Main(string[] args)
         {
-            MessageBox(IntPtr.Zero, "Command-line message box", "Attention!", 0);
             // Window Console Resize
-            //WindowAPI.ConsoleWindowResize();
+            WindowAPI.ConsoleWindowResize();
 
-            //// Resources Load
-            //Manager.Instance.Resource.LoadAllResources();
+            // 의존성 주입 형태로 할려다가 일단 다음에... 지금은 싱글톤으로 관리
+            Player player = new Player();
+            Manager.Instance.PM.SetPlayer(player);
 
-            //Player player = new Player();
-            //player.InitPlayerData();
+            // Resources Load
+            Manager.Instance.Resource.LoadAllResources();
+            Manager.Instance.Data.LoadItemData();
 
-            //player.PlayerData.Name = "hh23i";
-
-            //Manager.Instance.Data.SavePlayer(player, ResourceKeys.Player);
-            //if (Manager.Instance.Resource.IsComplete)
-            //{
-            //    Manager.Instance.Scene.LoadSceneIdx(Utilities.MAIN_SCENE_IDX);
-            //    Manager.Instance.Scene.Run();
-            //}
+            if (Manager.Instance.Resource.IsComplete)
+            {
+                Manager.Instance.Scene.LoadSceneIdx(Utilities.MAIN_SCENE_IDX);
+                Manager.Instance.Scene.Run();
+            }
         }
     }
 }

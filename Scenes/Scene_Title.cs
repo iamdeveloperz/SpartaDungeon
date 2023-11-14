@@ -1,5 +1,6 @@
 ﻿
 using Framework;
+using SpartaDungeon.Managers;
 
 namespace SpartaDungeon
 {

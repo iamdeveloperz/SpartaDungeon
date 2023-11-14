@@ -1,6 +1,6 @@
 ﻿
 using Newtonsoft.Json;
-using SpartaDungeon;
+using SpartaDungeon.Managers;
 
 namespace Framework
 {
@@ -16,9 +16,10 @@ namespace Framework
     {
         TitleText,
         MainGameMenuText,
+        StatusMenuText,
+        InventoryMenuText,
         CreatePlayerText,
         Player,
-        Inventory,
         ItemList,
     }
     #endregion
@@ -123,9 +124,8 @@ namespace Framework
 
             do
             {
-                Manager.Instance.UI.ClearUIMessageBox();
                 Manager.Instance.UI.PrintTextBoxMessage(
-                    "메뉴를 선택 해주세요. (엔터키를 누를 필요 없습니다)", 0, ConsoleColor.Yellow);
+                    "메뉴를 선택 해주세요. (엔터키를 누를 필요 없습니다)", 5, ConsoleColor.Yellow);
                 result = int.TryParse(Console.ReadKey(true).KeyChar.ToString(), out keyInput);
             } while (result == false || CheckIfValid(keyInput, min, max) == false);
 

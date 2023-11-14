@@ -1,7 +1,7 @@
 ﻿
 using Framework;
 
-namespace SpartaDungeon
+namespace SpartaDungeon.Managers
 {
     public class Manager_Scene
     {

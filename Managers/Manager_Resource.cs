@@ -2,7 +2,7 @@
 using Framework;
 using System.Globalization;
 
-namespace SpartaDungeon
+namespace SpartaDungeon.Managers
 {
     public class Manager_Resource
     {
@@ -22,7 +22,7 @@ namespace SpartaDungeon
         #region Constructor & Initalize
         public Manager_Resource()
         {
-            this.Initialize();
+            Initialize();
         }
         private void Initialize()
         {
@@ -36,7 +36,7 @@ namespace SpartaDungeon
         {
             string folderPath = Utilities.GetResourceFolderPath();
 
-            if(!Directory.Exists(folderPath))
+            if (!Directory.Exists(folderPath))
             {
                 Console.WriteLine($"폴더 {folderPath}가 존재하지 않습니다.");
                 throw new Exception("폴더가 존재하지 않습니다.");
@@ -45,18 +45,18 @@ namespace SpartaDungeon
             {
                 string[] files = Directory.GetFiles(folderPath);
 
-                foreach(string filePath in files)
+                foreach (string filePath in files)
                 {
                     string fileName = Path.GetFileNameWithoutExtension(filePath);
                     string fileExtension = Path.GetExtension(filePath);
 
-                    if(IsSupportedFileExtension(fileExtension) && _textResources != null)
+                    if (IsSupportedFileExtension(fileExtension) && _textResources != null)
                     {
-                        foreach(ResourceKeys key in Enum.GetValues(typeof(ResourceKeys)))
+                        foreach (ResourceKeys key in Enum.GetValues(typeof(ResourceKeys)))
                         {
                             string keyName = key.ToString();
 
-                            if(fileName.Equals(keyName, StringComparison.OrdinalIgnoreCase))
+                            if (fileName.Equals(keyName, StringComparison.OrdinalIgnoreCase))
                             {
                                 string fileContents = File.ReadAllText(filePath);
                                 _textResources[keyName] = fileContents;
@@ -82,7 +82,7 @@ namespace SpartaDungeon
                 else
                     Console.WriteLine($"Text resources not found : {strKey}");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.WriteLine($"Error loading text resource : {ex.Message}");
             }
@@ -104,8 +104,8 @@ namespace SpartaDungeon
         #region Extension Helper Methods
         private bool IsSupportedFileExtension(string fileExtension)
         {
-            return (fileExtension.Equals(".json", StringComparison.OrdinalIgnoreCase) ||
-                fileExtension.Equals(".txt", StringComparison.OrdinalIgnoreCase));
+            return fileExtension.Equals(".json", StringComparison.OrdinalIgnoreCase) ||
+                fileExtension.Equals(".txt", StringComparison.OrdinalIgnoreCase);
         }
         #endregion
     }

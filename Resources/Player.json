@@ -1,12 +1,12 @@
 {
   "PlayerData": {
-    "Name": "hh23i",
+    "Name": "2",
     "Level": 1,
     "Jobs": 0,
     "BaseDamage": 50.0,
-    "AttackDamage": 50.0,
+    "AttackDamage": 122.0,
     "BaseArmor": 5.0,
-    "DefenseArmor": 5.0,
+    "DefenseArmor": 13.0,
     "CurrentHp": 1000.0,
     "MaxHp": 1000.0,
     "CurrentSt": 250.0,
@@ -16,10 +16,85 @@
     "Gold": 10000
   },
   "Inventory": {
-    "InventoryItems": null
+    "InventoryItems": {
+      "w001": {
+        "Data": {
+          "UniqueID": "w001",
+          "ItemName": "낡은 검",
+          "ItemType": 0,
+          "Status": 55,
+          "IsUpgrade": true,
+          "IsEnchant": false,
+          "ItemDescription": "낡아 제기능을 못하는 검입니다.",
+          "PurchasePrice": 900,
+          "SellPrice": 400
+        },
+        "ItemQuantities": 1,
+        "IsEquipped": false
+      },
+      "w002": {
+        "Data": {
+          "UniqueID": "w002",
+          "ItemName": "무쇠 검",
+          "ItemType": 0,
+          "Status": 72,
+          "IsUpgrade": true,
+          "IsEnchant": false,
+          "ItemDescription": "무뎠지만 둔기처럼 사용 가능합니다.",
+          "PurchasePrice": 1500,
+          "SellPrice": 700
+        },
+        "ItemQuantities": 1,
+        "IsEquipped": true
+      },
+      "a001": {
+        "Data": {
+          "UniqueID": "a001",
+          "ItemName": "낡은 갑옷",
+          "ItemType": 1,
+          "Status": 8,
+          "IsUpgrade": true,
+          "IsEnchant": false,
+          "ItemDescription": "낡아 제기능을 못하는 방어구입니다.",
+          "PurchasePrice": 1500,
+          "SellPrice": 700
+        },
+        "ItemQuantities": 1,
+        "IsEquipped": true
+      }
+    }
   },
   "Equipment": {
-    "Weapon": null,
-    "Armor": null
+    "Weapon": {
+      "Data": {
+        "UniqueID": "w002",
+        "ItemName": "무쇠 검",
+        "ItemType": 0,
+        "Status": 72,
+        "IsUpgrade": true,
+        "IsEnchant": false,
+        "ItemDescription": "무뎠지만 둔기처럼 사용 가능합니다.",
+        "PurchasePrice": 1500,
+        "SellPrice": 700
+      },
+      "ItemQuantities": 1,
+      "IsEquipped": true
+    },
+    "Armor": {
+      "Data": {
+        "UniqueID": "a001",
+        "ItemName": "낡은 갑옷",
+        "ItemType": 1,
+        "Status": 8,
+        "IsUpgrade": true,
+        "IsEnchant": false,
+        "ItemDescription": "낡아 제기능을 못하는 방어구입니다.",
+        "PurchasePrice": 1500,
+        "SellPrice": 700
+      },
+      "ItemQuantities": 1,
+      "IsEquipped": true
+    },
+    "Accessories": null
   }
 }

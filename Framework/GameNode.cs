@@ -1,4 +1,6 @@
 ﻿
+using SpartaDungeon;
+
 namespace Framework
 {
     public interface IScene

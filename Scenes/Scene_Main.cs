@@ -1,5 +1,6 @@
 ﻿
 using Framework;
+using SpartaDungeon.Managers;
 
 namespace SpartaDungeon
 {
@@ -15,6 +16,7 @@ namespace SpartaDungeon
             base.Start();
 
             this.InitResource();
+            this.LoadPlayer();
         }
 
         public override void Update()
@@ -34,19 +36,23 @@ namespace SpartaDungeon
         #endregion
 
         #region Initializer
+        public void LoadPlayer()
+        {
+            if (!Manager.Instance.Data.LoadPlayer(Manager.Instance.PM.GetPlayer(), ResourceKeys.Player))
+                Manager.Instance.PM.CreatePlayerCharacter();
+            else
+            {
+                Manager.Instance.UI.PrintTextAlignCenterToCenter("Player data loaded. Successfully! (Press Any Key)", ConsoleColor.Cyan);
+                Console.ReadKey();
+            }
+            Console.CursorVisible = false;
+        }
+
         public void InitResource()
         {
             string mainText = Manager.Instance.Resource.GetTextResource(ResourceKeys.MainGameMenuText);
 
             _textMainGame = mainText.Split(new[] { "\n" }, StringSplitOptions.None);
-        }
-
-        public void LoadPlayerData(Player player)
-        {
-            if(!Manager.Instance.Data.IsLoadPlayerComplete() && player != null)
-            {
-                
-            }
         }
         #endregion
 
@@ -81,11 +87,11 @@ namespace SpartaDungeon
             {
                 case ConsoleKey.D1:
                 case ConsoleKey.NumPad1:        // 상태 보기
-                    //Manager.Instance.Player.PrintPlayerInfo();
+                    ViewTable.PrintCharacterStatus(Manager.Instance.PM.GetPlayer());
                     break;
                 case ConsoleKey.D2:
                 case ConsoleKey.NumPad2:        // 인벤토리
-                    //Manager.Instance.Player.GetInventory().PrintInventory();
+                    ViewTable.PrintInventoryMenu(Manager.Instance.PM.GetPlayer());
                     break;
                 case ConsoleKey.D3:
                 case ConsoleKey.NumPad3:
@@ -98,7 +104,7 @@ namespace SpartaDungeon
                     break;
                 case ConsoleKey.D6:
                 case ConsoleKey.NumPad6:
-                    //GameManager.Instance.Scene.LoadScene(Utilities.TITLE_SCENE_IDX);
+                    Manager.Instance.Scene.LoadSceneIdx(Utilities.TITLE_SCENE_IDX);
                     break;
                 case ConsoleKey.D0:
                 case ConsoleKey.NumPad0:

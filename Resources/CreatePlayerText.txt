@@ -14,6 +14,6 @@ WWWWWWWWWNKxc:codkkOOkkdoc:cxKNWWWWWWWWW
 WWWWWWWWWWWWXOo:,'''''',:oOXWWWWWWWWWWWW
 
 [ 처음오신 플레이어님 환영합니다 ]
-캐릭터 생성을 도와드리겠습니다.
 
-[타이틀로 돌아가기는 MessageBox 'B'입력]
+캐릭터 생성을 도와드리겠습니다.
+[ Message Box ]를 확인하세요.
